@@ -26,12 +26,12 @@ class BusinessCardDB {
     );
   }
 
-  Future<List<BusinessCard>?> fetchAll() async {
+  Future<List<BusinessCard>> fetchAll() async {
     final database = await DatabaseService().database;
-    final businessCards = await database?.rawQuery(
+    final businessCards = await database!.rawQuery(
       '''SELECT * FROM $tableName'''
     );
-    return businessCards?.map((businessCard) => BusinessCard.fromSqfliteDatabase(businessCard)).toList();
+    return businessCards.map((businessCard) => BusinessCard.fromSqfliteDatabase(businessCard)).toList();
   }
 
   Future<BusinessCard> fetchById(int id) async {

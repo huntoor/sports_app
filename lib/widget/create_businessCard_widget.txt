@@ -1,0 +1,50 @@
+import 'package:business_card/model/businessCard.dart';
+import 'package:flutter/material.dart';
+
+class CreateBusinessCardWidget extends StatefulWidget {
+  final BusinessCard? businessCard;
+  final ValueChanged<String> onSubmt;
+
+  const CreateBusinessCardWidget({
+    Key? key,
+    this.businessCard,
+    required this.onSubmt,
+  }) : super(key: key);
+  
+  @override
+  State<CreateBusinessCardWidget> createState() => _CreateBusinessCardWidget();
+
+}
+
+class _CreateBusinessCardWidget extends State<CreateBusinessCardWidget> {
+  final controller = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller.text = widget.businessCard?.name ?? '';
+    controller.text = widget.businessCard?.companyName ?? '';
+    controller.text = widget.businessCard?.email ?? '';
+    controller.text = widget.businessCard?.mobileNumber.toString() ?? '';
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    final isEditing = widget.businessCard != null;
+    return AlertDialog(
+      title: Text(isEditing ? 'Edit Business Card': 'Add Business Card'),
+      content: Form(
+        key: formKey,
+        child: TextFormField(
+          autofocus: true,
+          controller: controller,
+          decoration: const InputDecoration(hintText: 'Name'),
+          validator: (value) =>
+            value != null && value.isEmpty? '',
+        ),
+      ),
+    )
+  }
+}
