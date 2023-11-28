@@ -42,67 +42,70 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('Sports App'),
-      backgroundColor: Color(0xFFe1811f), // Set the background color of the AppBar
-    ),
-    body: Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: TextField(
-            controller: searchController,
-            onChanged: (query) => filterSports(query),
-            decoration: InputDecoration(
-              labelText: 'Search',
-              prefixIcon: Icon(Icons.search),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sports App'),
+        backgroundColor:
+            Color(0xFFe1811f), // Set the background color of the AppBar
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: TextField(
+              controller: searchController,
+              onChanged: (query) => filterSports(query),
+              decoration: InputDecoration(
+                labelText: 'Search',
+                prefixIcon: Icon(Icons.search),
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filteredSports.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(filteredSports[index]['name']),
-                  subtitle: Text(filteredSports[index]['sport']),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () => handleDelete(filteredSports[index]['id']),
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredSports.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.all(8.0),
+                  child: ListTile(
+                    title: Text(filteredSports[index]['name']),
+                    subtitle: Text(filteredSports[index]['sport']),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () =>
+                          handleDelete(filteredSports[index]['id']),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditScreen(
+                              sport: filteredSports[index],
+                              updateList: updateSportList),
+                        ),
+                      );
+                    },
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            EditScreen(sport: filteredSports[index], updateList: updateSportList),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
-      ],
-    ),
-    floatingActionButton: FloatingActionButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AddScreen(updateList: updateSportList),
-          ),
-        );
-      },
-      child: Icon(Icons.add),
-      backgroundColor: Color(0xFFe1811f), // Set the background color of the FloatingActionButton
-    ),
-  );
-}
-
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddScreen(updateList: updateSportList),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Color(
+            0xFFe1811f), // Set the background color of the FloatingActionButton
+      ),
+    );
+  }
 }
