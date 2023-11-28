@@ -1,4 +1,4 @@
-package com.hunter.business_card;
+package com.hunter.sports_app;
 
 import io.flutter.embedding.android.FlutterActivity;
 

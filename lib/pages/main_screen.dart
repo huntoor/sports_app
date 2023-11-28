@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_screen.dart';
 import 'edit_screen.dart';
-import 'package:business_card/database/database_helper.dart';
+import 'package:sports_app/database/database_helper.dart';
 
 class MainScreen extends StatefulWidget {
   @override

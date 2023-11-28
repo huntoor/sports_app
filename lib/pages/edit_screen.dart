@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:business_card/database/database_helper.dart';
+import 'package:sports_app/database/database_helper.dart';
 
 class EditScreen extends StatefulWidget {
   final Map<String, dynamic> sport;

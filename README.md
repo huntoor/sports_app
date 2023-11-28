@@ -1,6 +1,6 @@
-# business_card
+# sports_app
 
-Business Card App with Local Database
+List Sports App with Local Database
 
 ## Getting Started
 

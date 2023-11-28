@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:business_card/pages/main_screen.dart';
+import 'package:sports_app/pages/main_screen.dart';
 
 void main() {
   runApp(MyApp());
